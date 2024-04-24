@@ -34,7 +34,7 @@ class PilotLoginState extends State<PilotLogin> {
     if (dlNumber == '' || password == '') {
       showTopSnackBar(
           Overlay.of(context),
-          CustomSnackBar.info(
+          const CustomSnackBar.info(
             message: 'Fill Required Field',
             backgroundColor: Colors.white,
             textStyle: TextStyle(
@@ -42,7 +42,7 @@ class PilotLoginState extends State<PilotLogin> {
                 color: Constant.textBtnColor,
                 fontWeight: FontWeight.w600),
           ),
-          displayDuration: Duration(seconds: 2)
+          displayDuration: const Duration(seconds: 2)
       );
 
 
@@ -50,7 +50,7 @@ class PilotLoginState extends State<PilotLogin> {
       var userData = {'dlNumber': dlNumber, 'password': password};
 
       final jsonData = json.encode(userData);
-      var response;
+      http.Response response;
 
       try {
         response = await http.post(
@@ -61,14 +61,14 @@ class PilotLoginState extends State<PilotLogin> {
         var newResponse = json.decode(response.body);
 
         if (response.statusCode == 200) {
-          print('hallo-1');
+          debugPrint('hallo-1');
 
           if (newResponse['body-json']['statusCode'] == 200) {
-            print('hallo-2');
+            debugPrint('hallo-2');
 
             showTopSnackBar(
                 Overlay.of(context),
-                CustomSnackBar.info(
+                const CustomSnackBar.info(
                   message: 'Loged in successfully',
                   backgroundColor: Colors.green,
                   textStyle: TextStyle(
@@ -76,39 +76,39 @@ class PilotLoginState extends State<PilotLogin> {
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 2)
+                displayDuration: const Duration(seconds: 2)
             );
 
             storeDLNumber(dlNumber);
             
             storeToken(newResponse['body-json']['body']['tokens']);
 
-            Get.offAll(PilotHomePage());
 
             var pref = await SharedPreferences.getInstance();
             pref.setBool(SplashScreenState.KEYLOGINPERSIST, true);
+            Get.offAll(const PilotHomePage());
 
           } else if (newResponse['body-json']['statusCode'] == 400) {
-            print('hallo-3');
+            debugPrint('hallo-3');
 
             showTopSnackBar(
                 Overlay.of(context),
                 CustomSnackBar.info(
                   message: newResponse['body-json']['body'],
                   backgroundColor: Colors.white,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 25,
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 3)
+                displayDuration: const Duration(seconds: 3)
             );
 
-            print(newResponse['body-json']['body']);
+            debugPrint(newResponse['body-json']['body']);
           } else {
             showTopSnackBar(
                 Overlay.of(context),
-                CustomSnackBar.info(
+                const CustomSnackBar.info(
                   message: 'Please Enter Correct Password',
                   backgroundColor: Colors.white,
                   textStyle: TextStyle(
@@ -116,15 +116,15 @@ class PilotLoginState extends State<PilotLogin> {
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 3));
+                displayDuration: const Duration(seconds: 3));
           }
         } else {
-          print('hallo-4');
-          print('Failed');
+          debugPrint('hallo-4');
+          debugPrint('Failed');
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'Failed',
                 backgroundColor: Colors.white,
                 textStyle: TextStyle(
@@ -132,10 +132,10 @@ class PilotLoginState extends State<PilotLogin> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2));
+              displayDuration: const Duration(seconds: 2));
         }
       } catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
       }
     }
   }
@@ -143,78 +143,79 @@ class PilotLoginState extends State<PilotLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: Constant.height * 1,
-          width: Constant.width * 1,
-          child: Stack(
-            children: [
-              /// Back Image Container
-              Container(
-                height: Constant.height * .35,
-                width: Constant.width * 1,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/truck image.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 45,
-                          // fontWeight: FontWeight.bold,
-                          fontFamily: 'PopinsBlack'
-                      ),
+      body: SizedBox(
+        height: Constant.height * 1,
+        width: Constant.width * 1,
+        child: Stack(
+          children: [
+            /// Back Image Container
+            Container(
+              height: Constant.height * .35,
+              width: Constant.width * 1,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                image: DecorationImage(
+                    image: AssetImage('assets/images/truck image.jpg'),
+                    fit: BoxFit.cover),
+              ),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Welcome',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45,
+                        // fontWeight: FontWeight.bold,
+                        fontFamily: 'PopinsBlack'
                     ),
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 45,
-                          // fontWeight: FontWeight.bold,
-                          fontFamily: 'PopinsBlack'
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Text(
+                    'Back',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45,
+                        // fontWeight: FontWeight.bold,
+                        fontFamily: 'PopinsBlack'
+                    ),
+                  )
+                ],
               ),
-
-              /// box 2
-              Container(
-                height: Constant.height * .7,
-                width: Constant.width * 1,
-                margin: EdgeInsets.only(top: Constant.height * .3),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.elliptical(500, 100),
-                        topRight: Radius.elliptical(500, 100))),
-              ),
-
-              /// Main Content
-              Container(
-                height: Constant.height * 7,
-                width: Constant.width * 1,
-                margin: EdgeInsets.only(top: Constant.height * .3),
-                child: Center(
+            ),
+      
+            /// box 2
+            Container(
+              height: Constant.height * .7,
+              width: Constant.width * 1,
+              margin: EdgeInsets.only(top: Constant.height * .3),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.elliptical(500, 100),
+                      topRight: Radius.elliptical(500, 100))),
+            ),
+      
+            /// Main Content
+            Container(
+              height: Constant.height * 7,
+              padding: const EdgeInsets.all(16),
+              width: Constant.width * 1,
+              margin: EdgeInsets.only(top: Constant.height * .3),
+              child: Center(
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
                       SizedBox(
                         height: Constant.height * .07,
                       ),
-
+                        
                       /// DL Number
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10),
                             child: Row(
                               children: [
                                 Text(
@@ -248,13 +249,13 @@ class PilotLoginState extends State<PilotLogin> {
                       SizedBox(
                         height: Constant.height * .02,
                       ),
-
+                        
                       /// Password
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10),
                             child: Row(
                               children: [
                                 Text(
@@ -281,24 +282,26 @@ class PilotLoginState extends State<PilotLogin> {
                       ),
                       UiHelper.customTextFieldWithIconButton(() {
                         setState(() {
-                          hidePassword = hidePassword ? false : true;
+                          hidePassword = !hidePassword;
                         });
-                      }, passwordController, '', hidePassword, iconData),
+                      }, passwordController, '', hidePassword, 
+                      hidePassword ==false ?
+                      Icons.visibility : Icons.visibility_off),
                       SizedBox(
                         height: Constant.height * .02,
                       ),
-
+                        
                       /// Remember me and forget password
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             height: Constant.height * .05,
                             width: Constant.width * .45,
                             child: Row(
                               children: [
                                 Checkbox(
-                                  value: this.value,
+                                  value: value,
                                   activeColor: Colors.green,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(2),
@@ -309,7 +312,7 @@ class PilotLoginState extends State<PilotLogin> {
                                     });
                                   },
                                 ),
-                                Text(
+                                const Text(
                                   'Remember me',
                                   style: TextStyle(
                                       fontSize: 18,
@@ -322,15 +325,15 @@ class PilotLoginState extends State<PilotLogin> {
                           UiHelper.customTextButton(() {}, 'Forget Password')
                         ],
                       ),
-
+                        
                       // SizedBox(
                       //   height: Constant.height * .28,
                       // ),
-
+                        
                       SizedBox(
                         height: Constant.height * .07,
                       ),
-
+                        
                       /// Login Button
                       // FutureBuilder(
                       //   future: PilotLoginMethod(dlController.text.toString(),
@@ -352,21 +355,21 @@ class PilotLoginState extends State<PilotLogin> {
                       //
                       //   },
                       // ),
-
+                        
                       UiHelper.customButton(() {
                         PilotLoginMethod(dlController.text.toString(),
                             passwordController.text.toString());
                       }, 'Login'),
-
+                        
                       SizedBox(
                         height: Constant.height * .001,
                       ),
-
+                        
                       /// Dont have an account and Register Button
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Dont have an account?',
                             style: TextStyle(
                                 fontSize: 18,
@@ -374,7 +377,7 @@ class PilotLoginState extends State<PilotLogin> {
                                 color: Constant.textColor),
                           ),
                           UiHelper.customTextButton(() {
-                            Get.to(PilotRegistration());
+                            Get.to(const PilotRegistration());
                           }, 'Register now'),
                         ],
                       )
@@ -382,8 +385,8 @@ class PilotLoginState extends State<PilotLogin> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -393,14 +396,14 @@ class PilotLoginState extends State<PilotLogin> {
 
     var pref = await SharedPreferences.getInstance();
     pref.setString(KEYDLNUMBER, dlNumber);
-    print('dlNumber saved successfully');
+    debugPrint('dlNumber saved successfully');
   }
 
   void storeToken(String token) async {
 
     var pref = await SharedPreferences.getInstance();
     pref.setString(KEYTOKEN, token);
-    print('Token saved successfully');
+    debugPrint('Token saved successfully');
   }
 
 }

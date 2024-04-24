@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
 
 
@@ -36,14 +35,14 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
                 height: Constant.height * .02,
               ),
               /// Registration Completed
-              Text('Registration Completed', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),),
+              const Text('Registration Completed', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),),
 
               SizedBox(
                 height: Constant.height * .02,
               ),
 
               /// Description
-              Column(
+              const Column(
                 children: [
                   Text('Lorem ipsum dolor sit amet consectetur', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Constant.textColor),),
                   Text('adipsicing elit. Quo Lorem ipsum dolor sit', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Constant.textColor),),

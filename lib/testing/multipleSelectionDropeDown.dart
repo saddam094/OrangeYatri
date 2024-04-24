@@ -18,7 +18,7 @@ class _MultipleSelectionDropDownState extends State<MultipleSelectionDropDown> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select Item'),
+          title: const Text('Select Item'),
           content: SizedBox(
             width: double.maxFinite,
             child: ListView.builder(
@@ -45,17 +45,15 @@ class _MultipleSelectionDropDownState extends State<MultipleSelectionDropDown> {
               onPressed: () {
                 Navigator.of(context).pop(selectedItems.toList());
               },
-              child: Text('Done'),
+              child: const Text('Done'),
             ),
           ],
         );
       },);
-    if(result != null){
-      setState(() {
-        selectedItems = result;
-      });
+    setState(() {
+      selectedItems = result;
+    });
     }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +62,8 @@ class _MultipleSelectionDropDownState extends State<MultipleSelectionDropDown> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Selected Item : '),
-            SizedBox(height: 10,),
+            const Text('Selected Item : '),
+            const SizedBox(height: 10,),
             Wrap(
               children: selectedItems.map((item) {
                 return Chip(
@@ -82,7 +80,7 @@ class _MultipleSelectionDropDownState extends State<MultipleSelectionDropDown> {
               onPressed: () {
                 _showMultiSelect(context);
               }, 
-              child: Text('Select Item')
+              child: const Text('Select Item')
             )
           ],
         ),

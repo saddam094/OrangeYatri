@@ -6,7 +6,7 @@ class RegisterData extends GetxController{
 
   void updateState(){
     error = 'ok'.obs;
-    print('Hallo 11111');
+    debugPrint('Hallo 11111');
     update();
   }
 

@@ -12,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: const Text('Home Screen'),
       ),
       body: Center(
         child: Column(
@@ -20,15 +20,11 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              DateTime.now().hour.toString() +
-                  ":" +
-                  DateTime.now().minute.toString() +
-                  ":" +
-                  DateTime.now().second.toString(),
+              "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}",
               style:
-                  TextStyle(fontSize: 40, backgroundColor: Colors.yellowAccent),
+                  const TextStyle(fontSize: 40, backgroundColor: Colors.yellowAccent),
             ),
-            Text(
+            const Text(
               '0',
               style:
                   TextStyle(fontSize: 40, backgroundColor: Colors.greenAccent),
@@ -43,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(100)
           ),
-          child: Icon(Icons.add, size: 40,)
+          child: const Icon(Icons.add, size: 40,)
       ),
     );
   }

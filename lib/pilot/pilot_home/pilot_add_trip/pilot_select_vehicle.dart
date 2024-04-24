@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:orange_yatri/constant/constant_color.dart';
 import 'package:orange_yatri/pilot/pilot_authentication/pilot_login.dart';
@@ -27,7 +26,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
     var userData = {"dlNumber": dlNumber};
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -38,7 +37,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
       var newResponse = json.decode(response.body);
 
       if (newResponse['body-json']['statusCode'] == 200) {
-        print('hallo-2');
+        debugPrint('hallo-2');
 
         data = newResponse['body-json']['body'];
 
@@ -48,8 +47,8 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
       }
 
     } catch (e) {
-      print('saddam bhai ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam bhai ye Exception hai');
+      debugPrint(e.toString());
     }
   }
 
@@ -61,7 +60,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
 
     final jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
 
 
@@ -79,11 +78,11 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
         return newresponse['body-json']['body'];
       } else if (newresponse['body-json']['statusCode'] == 400) {
       } else {
-        print('Failed');
+        debugPrint('Failed');
       }
     } catch (e) {
-      print(e.toString());
-      print('saddam ye exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam ye exception hai');
     }
 
     return {
@@ -100,7 +99,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
         future: allVehicleData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -128,7 +127,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
                   data.length == 0
                       ? Column(
                       children: [
-                        Container(
+                        SizedBox(
                           height: Constant.height * .75,
                           width: Constant.width * 1,
                           child: Center(
@@ -141,14 +140,14 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
                             ),
 
                             UiHelper.customButton(() {
-                              Get.off(PilotAddVehicle());
+                              Get.off(const PilotAddVehicle());
                             }, 'Add Vehicle')
                       ]
                     ) : Container(
                       height: Constant.height * .87,
                       width: Constant.width * 1,
                       //padding: EdgeInsets.all(Constant.height * .015),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         // color: Colors.green,
                       ),
                       child: ListView.builder(
@@ -181,7 +180,7 @@ class _PilotSelectVehicleState extends State<PilotSelectVehicle> {
                                           color: Colors.black,
                                           borderRadius:
                                           BorderRadius.circular(10),
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             image: AssetImage(
                                                 'assets/images/truck image.jpg'),
                                             fit: BoxFit.cover,

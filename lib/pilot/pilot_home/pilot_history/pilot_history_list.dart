@@ -29,7 +29,7 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
 
     final jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -51,14 +51,14 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
 
       }else{
 
-        print('failed');
+        debugPrint('failed');
 
       }
 
 
     } catch (e) {
-      print(e.toString());
-      print('saddam ye exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam ye exception hai');
     }
     return {
       'name': 'Null',
@@ -86,7 +86,7 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
 
                   if(snapshot.connectionState == ConnectionState.waiting){
 
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
 
@@ -131,7 +131,7 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
                                       decoration: BoxDecoration(
                                           color: Colors.black,
                                           borderRadius: BorderRadius.circular(20),
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             image: AssetImage(
                                                 'assets/images/truck image.jpg'),
                                             fit: BoxFit.cover,
@@ -155,7 +155,7 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
                                         ),
                                         Row(
                                           children: [
-                                            Text(
+                                            const Text(
                                               'Vehicle Num : ',
                                               style: TextStyle(
                                                   color: Colors.grey,
@@ -163,14 +163,14 @@ class _PilotHistoryListState extends State<PilotHistoryList> {
                                             ),
                                             Text(
                                               data[index]['vehicleNumber'],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Constant.textColor),
                                             ),
                                           ],
                                         ),
                                         Row(
                                           children: [
-                                            Text(
+                                            const Text(
                                               'Trip Status : ',
                                               style: TextStyle(
                                                   color: Colors.grey,

@@ -24,10 +24,10 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
   Future tripEnd() async {
 
     var userData = {"tripId": widget.tripId};
-    print(widget.tripId);
+    debugPrint(widget.tripId);
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try {
       response = await http.put(
@@ -38,14 +38,14 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
       var newResponse = json.decode(response.body);
 
       if (response.statusCode == 200) {
-        print('hallo-1');
+        debugPrint('hallo-1');
 
         if (newResponse['body-json']['statusCode'] == 200) {
-          print('hallo-2');
+          debugPrint('hallo-2');
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'Trip End Successfully',
                 backgroundColor: Colors.green,
                 textStyle: TextStyle(
@@ -53,37 +53,37 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2)
+              displayDuration: const Duration(seconds: 2)
           );
 
-          Get.offAll(PilotHomePage());
+          Get.offAll(const PilotHomePage());
 
         } else if (newResponse['body-json']['statusCode'] == 400) {
-          print('hallo-3');
+          debugPrint('hallo-3');
 
           showTopSnackBar(
               Overlay.of(context),
               CustomSnackBar.info(
                 message: newResponse['body-json']['body'],
                 backgroundColor: Colors.white,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontSize: 25,
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 3)
+              displayDuration: const Duration(seconds: 3)
           );
 
-          print(newResponse['body-json']['body']);
+          debugPrint(newResponse['body-json']['body']);
         }
 
       } else {
-        print('hallo-4');
-        print('Failed');
+        debugPrint('hallo-4');
+        debugPrint('Failed');
 
         showTopSnackBar(
             Overlay.of(context),
-            CustomSnackBar.info(
+            const CustomSnackBar.info(
               message: 'Failed',
               backgroundColor: Colors.white,
               textStyle: TextStyle(
@@ -91,11 +91,11 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                   color: Constant.textBtnColor,
                   fontWeight: FontWeight.w600),
             ),
-            displayDuration: Duration(seconds: 2));
+            displayDuration: const Duration(seconds: 2));
       }
     } catch (e) {
-      print('saddam bhai ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam bhai ye Exception hai');
+      debugPrint(e.toString());
     }
   }
 
@@ -103,7 +103,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
     var userData = {"tripId": widget.tripId};
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -115,13 +115,13 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
 
       if (newResponse['body-json']['statusCode'] == 200) {
         data = newResponse['body-json']['body'];
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
       } else if (newResponse['body-json']['statusCode'] == 400) {
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
       }
     } catch (e) {
-      print('saddam ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam ye Exception hai');
+      debugPrint(e.toString());
     }
 
     return {
@@ -138,7 +138,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
       future: tripData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
@@ -151,7 +151,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                   width: Constant.width * 1,
                   padding: EdgeInsets.only(
                       left: Constant.width * .05, right: Constant.width * .05),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
@@ -163,18 +163,14 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                       Column(
                         children: [
                           Text(
-                            data['name'] == null
-                                ? 'null'
-                                : data['name'],
+                            data['name'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .07,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
                           Text(
-                            data['dlNumber'] == null
-                                ? 'null'
-                                : data['dlNumber'],
+                            data['dlNumber'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .05,
                                 fontWeight: FontWeight.w400,
@@ -217,7 +213,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                 Container(
                   height: Constant.height * .39,
                   width: Constant.width * .95,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   margin: EdgeInsets.only(top: Constant.height * .015),
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -263,16 +259,12 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                data['vehicleName'] == null
-                                    ? 'null'
-                                    : data['vehicleName'],
+                                data['vehicleName'] ?? 'null',
                                 style: TextStyle(
                                     fontSize: Constant.width * .05, fontWeight: FontWeight.w600, fontFamily: 'PopinsBlack'),
                               ),
                               Text(
-                                data['vehicleNumber'] == null
-                                    ? 'null'
-                                    : data['vehicleNumber'],
+                                data['vehicleNumber'] ?? 'null',
                                 style: TextStyle(
                                     fontSize: Constant.width * .05,
                                     fontWeight: FontWeight.w400,
@@ -314,7 +306,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                             ),
                           ),
                           Text(
-                            data['date'] == null ? 'null' : data['date'],
+                            data['date'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .05,
                                 fontWeight: FontWeight.w400,
@@ -336,7 +328,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                             ),
                           ),
                           Text(
-                            data['time'] == null ? 'null' : data['time'],
+                            data['time'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .05,
                                 fontWeight: FontWeight.w400,
@@ -358,9 +350,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                             ),
                           ),
                           Text(
-                            data['goodsDetails'] == null
-                                ? 'null'
-                                : data['goodsDetails'],
+                            data['goodsDetails'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .05,
                                 fontWeight: FontWeight.w400,
@@ -382,9 +372,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                             ),
                           ),
                           Text(
-                            data['goodsWeight'] == null
-                                ? 'null'
-                                : data['goodsWeight'],
+                            data['goodsWeight'] ?? 'null',
                             style: TextStyle(
                                 fontSize: Constant.width * .05,
                                 fontWeight: FontWeight.w400,
@@ -398,7 +386,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           /// Pickup Address
-                          Container(
+                          SizedBox(
                             height: Constant.height * .09,
                             width: Constant.width * .44,
                             // color: Colors.red,
@@ -416,9 +404,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                                 ),
                                 Container(
                                   child: Text(
-                                    data['pickUpAddress'] == null
-                                        ? 'null'
-                                        : data['pickUpAddress'],
+                                    data['pickUpAddress'] ?? 'null',
                                     style: TextStyle(
                                         fontSize: Constant.width * .04,
                                         fontWeight: FontWeight.w400,
@@ -431,7 +417,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                           ),
 
                           /// Delivery Address
-                          Container(
+                          SizedBox(
                             height: Constant.height * .09,
                             width: Constant.width * .44,
                             // color: Colors.yellowAccent,
@@ -449,9 +435,7 @@ class _PilotEndYourRideState extends State<PilotEndYourRide> {
                                   ),
                                 ),
                                 Text(
-                                  data['deliveryAddress'] == null
-                                      ? 'null'
-                                      : data['deliveryAddress'],
+                                  data['deliveryAddress'] ?? 'null',
                                   style: TextStyle(
                                       fontSize: Constant.width * .04,
                                       fontWeight: FontWeight.w400,

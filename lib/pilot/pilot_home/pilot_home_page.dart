@@ -34,7 +34,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
 
     final jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -49,26 +49,26 @@ class _PilotHomePageState extends State<PilotHomePage> {
       var newresponse = json.decode(response.body);
 
       if (newresponse['body-json']['statusCode'] == 200) {
-        // print('hallo-2');
+        // debugPrint('hallo-2');
 
-        // print(newresponse['body-json']['body']);
+        // debugPrint(newresponse['body-json']['body']);
 
         data = newresponse['body-json']['body'];
 
-        // print(data);
+        // debugPrint(data);
 
         return newresponse['body-json']['body'];
       } else if (newresponse['body-json']['statusCode'] == 400) {
-        // print('hallo-3');
+        // debugPrint('hallo-3');
 
-        //print(newresponse['body-json']['statusCode']);
+        //debugPrint(newresponse['body-json']['statusCode']);
 
       } else {
-        print('Failed');
+        debugPrint('Failed');
       }
     } catch (e) {
-      print(e.toString());
-      print('saddam ye exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam ye exception hai');
     }
     // return {
     //   'name': 'Null',
@@ -83,7 +83,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
 
     final jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -97,7 +97,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
 
           if(newResponse['body-json']['body']['status']){
 
-            Get.to(PilotSelectVehicle());
+            Get.to(const PilotSelectVehicle());
 
           }else{
 
@@ -111,13 +111,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
 
       } else {
 
-        print('Failed');
+        debugPrint('Failed');
 
       }
     } catch (e) {
 
-      print(e.toString());
-      print('saddam ye exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam ye exception hai');
 
     }
 
@@ -130,7 +130,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
         future: profileData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -140,8 +140,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
                 Container(
                   height: Constant.height * .2,
                   width: Constant.width * 1,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
                       // color: Constant.textBtnColor,
                       gradient: LinearGradient(colors: [
                         Constant.textBtnColor,
@@ -160,8 +160,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello, ${data['name']==null ? 'null' : data['name']}',
-                            style: TextStyle(
+                            'Hello, ${data['name'] ?? 'null'}',
+                            style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
@@ -184,7 +184,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                       GestureDetector(
                         onTap: () {
                           /// Send to profile page
-                          Get.to(PilotProfileScreen());
+                          Get.to(const PilotProfileScreen());
                         },
                         child: Container(
                           height: Constant.height * .08,
@@ -230,7 +230,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                   color: Colors.grey.shade500,
                                   blurRadius: 2,
                                   spreadRadius: 1,
-                                  offset: Offset(2.0, 2.0))
+                                  offset: const Offset(2.0, 2.0))
                             ]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -269,7 +269,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                   /// Name
                                   Row(
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Name : ',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -277,8 +277,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                             fontWeight: FontWeight.w600),
                                       ),
                                       Text(
-                                        data['name'] == null ? 'null' : data['name'],
-                                        style: TextStyle(
+                                        data['name'] ?? 'null',
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.grey,
                                             fontWeight: FontWeight.w400),
@@ -289,7 +289,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                   /// Mobile
                                   Row(
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Mob : ',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -297,8 +297,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                             fontWeight: FontWeight.w600),
                                       ),
                                       Text(
-                                        data['phone'] == null ? 'null' : data['phone'],
-                                        style: TextStyle(
+                                        data['phone'] ?? 'null',
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.grey,
                                             fontWeight: FontWeight.w400),
@@ -309,7 +309,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                   /// DL
                                   Row(
                                     children: [
-                                      Text(
+                                      const Text(
                                         'DL : ',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -317,8 +317,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                             fontWeight: FontWeight.w600),
                                       ),
                                       Text(
-                                        data['dlNumber'] == null ? 'null' : data['dlNumber'],
-                                        style: TextStyle(
+                                        data['dlNumber'] ?? 'null',
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.grey,
                                             fontWeight: FontWeight.w400),
@@ -342,7 +342,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                         children: [
                           UiHelper.customFullWidthHomeCard(() {
 
-                            Get.to(PilotAllVehicle());
+                            Get.to(const PilotAllVehicle());
 
                           }, 'Add Vehicle', Icons.drive_eta),
 
@@ -362,7 +362,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                         children: [
                           UiHelper.customFullWidthHomeCard(() {
 
-                            Get.to(PilotHistoryList());
+                            Get.to(const PilotHistoryList());
 
                           }, 'History', Icons.history_edu_outlined),
 

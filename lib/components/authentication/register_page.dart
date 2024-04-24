@@ -9,7 +9,6 @@ import 'package:orange_yatri/components/authentication/login_page.dart';
 import 'package:orange_yatri/components/authentication/verify_email_address_page.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
 import 'package:orange_yatri/ui/ui_helper.dart';
-import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -46,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
     };
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try{
 
@@ -58,10 +57,10 @@ class _RegisterPageState extends State<RegisterPage> {
       var newResponse = json.decode(response.body);
 
       if(response.statusCode == 200){
-        print('hallo-1');
+        debugPrint('hallo-1');
 
         if(newResponse['body-json']['statusCode'] == 200){
-          print('hallo-2');
+          debugPrint('hallo-2');
           setState(() {
             err = '';
           });
@@ -72,17 +71,17 @@ class _RegisterPageState extends State<RegisterPage> {
             err = newResponse['body-json']['body'];
           });
 
-          print(newResponse['body-json']['statusCode']);
-          print(newResponse['body-json']['body']);
+          debugPrint(newResponse['body-json']['statusCode']);
+          debugPrint(newResponse['body-json']['body']);
         }
 
       }else{
-        print('failed');
+        debugPrint('failed');
       }
 
     }catch(e){
-      print(e.toString());
-      print('saddam');
+      debugPrint(e.toString());
+      debugPrint('saddam');
     }
 
   }
@@ -98,10 +97,10 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: Constant.height * .06,),
 
               /// Registration
-              Text('Registration', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),),
+              const Text('Registration', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),),
 
               /// Create Your New Account
-              Text('Create Your New Account', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Constant.textColor),),
+              const Text('Create Your New Account', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Constant.textColor),),
               SizedBox(height: Constant.height *.05,),
 
               /// Name ( TextField )
@@ -209,14 +208,14 @@ class _RegisterPageState extends State<RegisterPage> {
               // ),
 
 
-              Container(
+              SizedBox(
                 height: Constant.height * .05,
                 width: Constant.width * 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(''),
-                    Text(err, style: TextStyle(fontSize: 18, color: Colors.red),),
+                    const Text(''),
+                    Text(err, style: const TextStyle(fontSize: 18, color: Colors.red),),
                   ],
                 ),
               ),
@@ -274,9 +273,9 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Dont have an account?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
+                  const Text('Dont have an account?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                   UiHelper.customTextButton(() {
-                    Get.to(LoginPage());
+                    Get.to(const LoginPage());
                   }, 'Login now'),
                 ],
               )

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
@@ -42,7 +41,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
         time == 'Select Time') {
       showTopSnackBar(
           Overlay.of(context),
-          CustomSnackBar.info(
+          const CustomSnackBar.info(
             message: 'Fill Required Field',
             backgroundColor: Colors.white,
             textStyle: TextStyle(
@@ -50,7 +49,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                 color: Constant.textBtnColor,
                 fontWeight: FontWeight.w600),
           ),
-          displayDuration: Duration(seconds: 2));
+          displayDuration: const Duration(seconds: 2));
     } else {
       var userData = {
         "tripStartedBy": "TID946497",
@@ -67,7 +66,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
       };
 
       var jsonData = json.encode(userData);
-      var response;
+      http.Response response;
 
       try {
         response = await http.post(
@@ -81,7 +80,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
           if (newResponse['body-json']['statusCode'] == 200) {
             showTopSnackBar(
                 Overlay.of(context),
-                CustomSnackBar.info(
+                const CustomSnackBar.info(
                   message: 'Trip Started successfully',
                   backgroundColor: Colors.green,
                   textStyle: TextStyle(
@@ -89,7 +88,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 2)
+                displayDuration: const Duration(seconds: 2)
             );
 
             Get.off(PilotEndYourRide(tripId: newResponse['body-json']['tripId']));
@@ -100,19 +99,19 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                 CustomSnackBar.info(
                   message: newResponse['body-json']['body'],
                   backgroundColor: Colors.white,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 25,
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 3));
+                displayDuration: const Duration(seconds: 3));
           }
         } else {
-          print('failed');
+          debugPrint('failed');
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'failed',
                 backgroundColor: Colors.white,
                 textStyle: TextStyle(
@@ -120,11 +119,11 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 3));
+              displayDuration: const Duration(seconds: 3));
         }
       } catch (e) {
-        print('saddam bhai ye Exception hai');
-        print(e.toString());
+        debugPrint('saddam bhai ye Exception hai');
+        debugPrint(e.toString());
       }
     }
   }
@@ -267,7 +266,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                         );
 
                         if(datePicked != null){
-                          print('Date Selected : ${datePicked.day}-${datePicked.month}-${datePicked.year}');
+                          debugPrint('Date Selected : ${datePicked.day}-${datePicked.month}-${datePicked.year}');
                           setState(() {
                             selectedDate = '${datePicked.day}/${datePicked.month}/${datePicked.year}';
                           });
@@ -333,7 +332,7 @@ class _PilotStartYourRideState extends State<PilotStartYourRide> {
                         );
 
                         if(pickedTime != null){
-                          print('time Selected : ${pickedTime.hour} : ${pickedTime.minute}');
+                          debugPrint('time Selected : ${pickedTime.hour} : ${pickedTime.minute}');
 
                           setState(() {
                             selectedTime = '${pickedTime.hour} : ${pickedTime.minute}';

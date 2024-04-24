@@ -32,7 +32,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
 
     var jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try{
 
@@ -53,20 +53,20 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
 
         }else if(newResponse['body-json']['statusCode'] == 400){
 
-          print(newResponse['body-json']['body']);
+          debugPrint(newResponse['body-json']['body']);
 
         }
         
       }else{
         
-        print('Failed');
+        debugPrint('Failed');
         
       }
 
     }catch(e){
 
-      print('saddam bhai ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam bhai ye Exception hai');
+      debugPrint(e.toString());
 
     }
 
@@ -83,11 +83,11 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
     // var authData = {
     //   'Authorization': token
     // };
-    print(widget.vehicleNumber);
+    debugPrint(widget.vehicleNumber);
 
     var jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try{
 
@@ -110,7 +110,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'Vehicle Deleted successfully',
                 backgroundColor: Colors.green,
                 textStyle: TextStyle(
@@ -118,10 +118,10 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2)
+              displayDuration: const Duration(seconds: 2)
           );
 
-          Get.offAll(PilotHomePage());
+          Get.offAll(const PilotHomePage());
 
         }else if(newResponse['body-json']['statusCode'] == 400){
 
@@ -130,12 +130,12 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
               CustomSnackBar.info(
                 message: newResponse['body-json']['body'],
                 backgroundColor: Colors.white,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontSize: 25,
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2)
+              displayDuration: const Duration(seconds: 2)
           );
 
         }
@@ -144,7 +144,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
 
         showTopSnackBar(
             Overlay.of(context),
-            CustomSnackBar.info(
+            const CustomSnackBar.info(
               message: 'Failed',
               backgroundColor: Colors.white,
               textStyle: TextStyle(
@@ -152,15 +152,15 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                   color: Constant.textBtnColor,
                   fontWeight: FontWeight.w600),
             ),
-            displayDuration: Duration(seconds: 2)
+            displayDuration: const Duration(seconds: 2)
         );
 
       }
 
     }catch(e){
 
-      print('saddam bhai ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam bhai ye Exception hai');
+      debugPrint(e.toString());
 
     }
 
@@ -181,7 +181,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
 
             if(snapshot.connectionState == ConnectionState.waiting){
 
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
 
@@ -200,7 +200,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(''),
+                        const Text(''),
                         UiHelper.customOneByFourButton(() {
 
                           // Get.to(PilotUpdateProfile());
@@ -236,13 +236,13 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Vehicle Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800, fontFamily: 'FontMain'),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -250,7 +250,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                               width: 1
                           )
                       ),
-                      child: Text(data['vehicleName'] == null ? 'null' : data['vehicleName'],style: TextStyle(
+                      child: Text(data['vehicleName'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -262,13 +262,13 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Vehicle Number', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800, fontFamily: 'FontMain'),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -276,7 +276,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                               width: 1
                           )
                       ),
-                      child: Text(data['vehicleNumber'] == null ? 'null' : data['vehicleNumber'],style: TextStyle(
+                      child: Text(data['vehicleNumber'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -289,13 +289,13 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Engine Number', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800, fontFamily: 'FontMain'),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -303,7 +303,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                               width: 1
                           )
                       ),
-                      child: Text(data['engineNumber'] == null ? 'null' : data['engineNumber'],style: TextStyle(
+                      child: Text(data['engineNumber'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -315,13 +315,13 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Chasis Number', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800, fontFamily: 'FontMain'),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -329,7 +329,7 @@ class _PilotVehicleViewState extends State<PilotVehicleView> {
                               width: 1
                           )
                       ),
-                      child: Text(data['chasisNumber'] == null ? 'null' : data['chasisNumber'],style: TextStyle(
+                      child: Text(data['chasisNumber'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),

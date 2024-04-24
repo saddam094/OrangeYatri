@@ -28,7 +28,7 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
 
     final jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -39,25 +39,25 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
       var newresponse = json.decode(response.body);
 
       if (newresponse['body-json']['statusCode'] == 200) {
-        // print('hallo-2');
+        // debugPrint('hallo-2');
 
-        // print(newresponse['body-json']['body']);
+        // debugPrint(newresponse['body-json']['body']);
 
         data = newresponse['body-json']['body'];
 
-        // print(data);
+        // debugPrint(data);
 
         return newresponse['body-json']['body'];
       } else if (newresponse['body-json']['statusCode'] == 400) {
-        // print('hallo-3');
+        // debugPrint('hallo-3');
 
-        //print(newresponse['body-json']['statusCode']);
+        //debugPrint(newresponse['body-json']['statusCode']);
       } else {
-        print('Failed');
+        debugPrint('Failed');
       }
     } catch (e) {
-      print(e.toString());
-      print('saddam ye exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam ye exception hai');
     }
     return {
       'name': 'Null',
@@ -73,7 +73,7 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
         future: allVehicleData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -97,16 +97,16 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
                   /// Vehicle List Container
 
                   data.length == 0 ?
-                      Container(
+                      SizedBox(
                         height: Constant.height * .74,
                         width: Constant.width * 1,
-                        child: Center(child: Text('No vehicle Added', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.grey),),),
+                        child: const Center(child: Text('No vehicle Added', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.grey),),),
                       ) :
                   Container(
                       height: Constant.height * .74,
                       width: Constant.width * 1,
                       //padding: EdgeInsets.all(Constant.height * .015),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           // color: Colors.green,
                           ),
                       child: ListView.builder(
@@ -137,7 +137,7 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
                                       decoration: BoxDecoration(
                                           color: Colors.black,
                                           borderRadius: BorderRadius.circular(20),
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             image: AssetImage(
                                                 'assets/images/truck image.jpg'),
                                             fit: BoxFit.cover,
@@ -220,7 +220,7 @@ class _PilotAllVehicleState extends State<PilotAllVehicle> {
 
                   /// Add Vehicle Button
                   UiHelper.customButton(() {
-                    Get.to(PilotAddVehicle());
+                    Get.to(const PilotAddVehicle());
                   }, 'Add Vehicle')
                 ],
               ),

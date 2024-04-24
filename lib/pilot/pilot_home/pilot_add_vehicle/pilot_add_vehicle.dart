@@ -33,7 +33,7 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
 
       showTopSnackBar(
           Overlay.of(context),
-          CustomSnackBar.info(
+          const CustomSnackBar.info(
             message: 'Fill Required Field',
             backgroundColor: Colors.white,
             textStyle: TextStyle(
@@ -41,7 +41,7 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
                 color: Constant.textBtnColor,
                 fontWeight: FontWeight.w600),
           ),
-          displayDuration: Duration(seconds: 2)
+          displayDuration: const Duration(seconds: 2)
       );
 
     }else{
@@ -57,7 +57,7 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
       };
 
       final jsonData = json.encode(userData);
-      var response;
+      http.Response response;
 
       try {
         response = await http.post(
@@ -68,14 +68,14 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
         var newResponse = json.decode(response.body);
 
         if (response.statusCode == 200) {
-          print('hallo-1');
+          debugPrint('hallo-1');
 
           if (newResponse['body-json']['statusCode'] == 200) {
-            print('hallo-2');
+            debugPrint('hallo-2');
 
             showTopSnackBar(
                 Overlay.of(context),
-                CustomSnackBar.info(
+                const CustomSnackBar.info(
                   message: 'Vehicle Added successfully',
                   backgroundColor: Colors.green,
                   textStyle: TextStyle(
@@ -83,10 +83,10 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 2)
+                displayDuration: const Duration(seconds: 2)
             );
 
-            Get.off(PilotAllVehicle());
+            Get.off(const PilotAllVehicle());
           } else if (newResponse['body-json']['statusCode'] == 400) {
 
             showTopSnackBar(
@@ -94,23 +94,23 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
                 CustomSnackBar.info(
                   message: newResponse['body-json']['body'],
                   backgroundColor: Colors.white,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 25,
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 3)
+                displayDuration: const Duration(seconds: 3)
             );
 
-            print(newResponse['body-json']['statusCode']);
-            print(newResponse['body-json']['body']);
+            debugPrint(newResponse['body-json']['statusCode']);
+            debugPrint(newResponse['body-json']['body']);
           }
         } else {
-          print('failed');
+          debugPrint('failed');
         }
       } catch (e) {
-        print(e.toString());
-        print('saddam');
+        debugPrint(e.toString());
+        debugPrint('saddam');
       }
 
     }
@@ -128,7 +128,7 @@ class _PilotAddVehicleState extends State<PilotAddVehicle> {
               ),
 
               /// Add Vehicle ( Heading Text )
-              Text(
+              const Text(
                 'Add Vehicle',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
               ),

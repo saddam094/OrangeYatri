@@ -7,6 +7,8 @@ import 'package:orange_yatri/pilot/pilot_home/pilot_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => SplashScreenState();
 }
@@ -25,21 +27,21 @@ class SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1), // Animation duration
+      duration: const Duration(seconds: 1), // Animation duration
     );
 
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
 
-    // Timer(Duration(seconds: 1), () {
-    //   _controller.forward();
-    // });
+    Timer(const Duration(seconds: 1), () {
+      _controller.forward();
+    });
 
-    // Timer(Duration(seconds: 3), () {
-    //   // Get.offAll(() => PilotLogin());
-    //   WhereToGo();
-    // });
+    Timer(const Duration(seconds: 3), () {
+      // Get.offAll(() => PilotLogin());
+      whereToGo();
+    });
 
-    WhereToGo();
+    // whereToGo();
 
   }
 
@@ -56,7 +58,7 @@ class SplashScreenState extends State<SplashScreen>
       body: Container(
         width: Constant.width * 1, // Using Get.width instead of double.infinity
         height: Constant.height * 1, // Using Get.height instead of double.infinity
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Constant.textBtnColor
         ),
         child: Center(
@@ -76,18 +78,15 @@ class SplashScreenState extends State<SplashScreen>
     );
   }
 
-  void WhereToGo() async{
-    print('hallo from whereToGo');
+  void whereToGo() async{
     var pref = await SharedPreferences.getInstance();
-    var isLoggedIn = pref.getBool(KEYLOGINPERSIST ??false);
-    print(isLoggedIn);
+    var isLoggedIn = pref.getBool(KEYLOGINPERSIST);
     if(isLoggedIn != null){
-
-      if(isLoggedIn){
-        Get.offAll(PilotHomePage());
+ if(isLoggedIn){
+        Get.offAll(const PilotHomePage());
       }
     }else{
-      Get.offAll(PilotLogin());
+      Get.offAll(const PilotLogin());
     }
 
   }

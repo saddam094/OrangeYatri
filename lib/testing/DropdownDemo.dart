@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DropdownDemo extends StatefulWidget {
+  const DropdownDemo({super.key});
+
   @override
   _DropdownDemoState createState() => _DropdownDemoState();
 }
 
 class _DropdownDemoState extends State<DropdownDemo> {
   String _selectedItem = 'Apple';
-  List<String> _dropdownItems = ['Apple', 'Ball', 'Cat', 'Dog'];
+  final List<String> _dropdownItems = ['Apple', 'Ball', 'Cat', 'Dog'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,10 @@ class _DropdownDemoState extends State<DropdownDemo> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Selected Item : '+_selectedItem,
-              style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+              'Selected Item : $_selectedItem',
+              style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DropdownButton<String>(
               value: _selectedItem,
               onChanged: (newValue) {
@@ -34,7 +36,7 @@ class _DropdownDemoState extends State<DropdownDemo> {
               items: _dropdownItems.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                  child: Text(value, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                 );
               }).toList(),
             ),

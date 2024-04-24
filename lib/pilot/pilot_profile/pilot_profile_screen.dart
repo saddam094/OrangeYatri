@@ -32,7 +32,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
     var userData = {"dlNumber": dlNumber};
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try{
 
@@ -51,18 +51,18 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
       if(newResponse['body-json']['statusCode'] == 200){
 
         data = newResponse['body-json']['body'];
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
 
       }else if(newResponse['body-json']['statusCode'] == 400){
 
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
 
       }
 
     }catch(e){
 
-      print('saddam ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam ye Exception hai');
+      debugPrint(e.toString());
 
     }
 
@@ -91,7 +91,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
           builder: (context, AsyncSnapshot<Object>snapshot) {
             if(snapshot.connectionState == ConnectionState.waiting){
 
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
 
@@ -113,10 +113,10 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(''),
+                        const Text(''),
                         UiHelper.customOneByFourButton(() {
 
-                          Get.to(PilotUpdateProfile());
+                          Get.to(const PilotUpdateProfile());
 
                         }, 'Edit')
                       ],
@@ -149,13 +149,13 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -163,7 +163,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                               width: 1
                           )
                       ),
-                      child: Text(data['name'] == null ? 'null': data['name'],style: TextStyle(
+                      child: Text(data['name'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -174,14 +174,14 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(data['phone'] == null ? 'null': data['phone'], style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800),),
-                        Text('')
+                        Text(data['phone'] ?? 'null', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800),),
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -202,13 +202,13 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Email Id', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -216,7 +216,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                               width: 1
                           )
                       ),
-                      child: Text(data['email']  == null ? 'null': data['email'],style: TextStyle(
+                      child: Text(data['email'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -228,13 +228,13 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('DL Number', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey.shade800),),
-                        Text('')
+                        const Text('')
                       ],
                     ),
                     Container(
                       height: Constant.height * .06,
                       width: Constant.width * 1,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -242,7 +242,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                               width: 1
                           )
                       ),
-                      child: Text(data['dlNumber'] == null ? 'null': data['dlNumber'],style: TextStyle(
+                      child: Text(data['dlNumber'] ?? 'null',style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey.shade800
                       ),),
@@ -294,7 +294,7 @@ class _PilotProfileScreenState extends State<PilotProfileScreen> {
                     UiHelper.customButton(() {
 
                       loginPersistent();
-                      Get.offAll(PilotLogin());
+                      Get.offAll(const PilotLogin());
 
                     }, 'LOG OUT')
                   ],

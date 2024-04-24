@@ -35,7 +35,7 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
     };
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try{
 
@@ -47,28 +47,28 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
       var newResponse = json.decode(response.body);
 
       if(response.statusCode == 200){
-        print('hallo-1');
+        debugPrint('hallo-1');
 
         if(newResponse['body-json']['statusCode'] == 200){
-          print('hallo-2');
+          debugPrint('hallo-2');
           setState(() {
             err = '';
           });
-          Get.to(HomePage());
+          Get.to(const HomePage());
         } else if(newResponse['body-json']['statusCode'] == 400){
           setState(() {
             err = newResponse['body-json']['body'];
           });
-          print(newResponse['body-json']['statusCode']);
-          print(newResponse['body-json']['body']);
+          debugPrint(newResponse['body-json']['statusCode']);
+          debugPrint(newResponse['body-json']['body']);
         }
 
       }else{
-        print('failed');
+        debugPrint('failed');
       }
 
     }catch(e){
-      print(e.toString());
+      debugPrint(e.toString());
     }
 
   }
@@ -84,10 +84,10 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
                 height: Constant.height * .1,
               ),
               /// Verify Email Address
-              Text('Verify Email Address', style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),),
+              const Text('Verify Email Address', style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),),
 
               /// Waiting for OTP
-              Text('Waiting for OTP', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, color: Constant.textColor),),
+              const Text('Waiting for OTP', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, color: Constant.textColor),),
 
               SizedBox(
                 height: Constant.height * .05,
@@ -98,7 +98,7 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
               ),
 
               /// Description
-              Column(
+              const Column(
                 children: [
                   Text('A 4 digit code has been sent to your', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
                   Text('registered phone number ending 2489 for', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
@@ -127,10 +127,10 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
               //   height: Constant.height * .26,
               // ),
 
-              Container(
+              SizedBox(
                 height: Constant.height * .26,
                 width: Constant.width * 1,
-                child: Center(child: Text(err, style:  TextStyle(fontSize: 18, color: Colors.red),)),
+                child: Center(child: Text(err, style:  const TextStyle(fontSize: 18, color: Colors.red),)),
               ),
 
               /// Confirm Registration Button
@@ -143,7 +143,7 @@ class _VerifyEmailAddressPageState extends State<VerifyEmailAddressPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Did not recieve code ? ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
+                  const Text('Did not recieve code ? ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                   UiHelper.customTextButton(() {
 
                   }, 'Resend Code'),

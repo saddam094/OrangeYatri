@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:orange_yatri/components/authentication/verify_email_address_page.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
 import 'package:orange_yatri/pilot/pilot_authentication/Pilot_verify_email.dart';
 import 'package:orange_yatri/pilot/pilot_authentication/pilot_login.dart';
@@ -34,7 +33,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
 
       showTopSnackBar(
           Overlay.of(context),
-          CustomSnackBar.info(
+          const CustomSnackBar.info(
             message: 'Fill Required Field',
             backgroundColor: Colors.white,
             textStyle: TextStyle(
@@ -42,7 +41,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
                 color: Constant.textBtnColor,
                 fontWeight: FontWeight.w600),
           ),
-          displayDuration: Duration(seconds: 2)
+          displayDuration: const Duration(seconds: 2)
       );
 
     }else{
@@ -56,7 +55,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
       };
 
       final jsonData = json.encode(userData);
-      var response;
+      http.Response response;
 
       try {
         response = await http.post(
@@ -67,16 +66,16 @@ class _PilotRegistrationState extends State<PilotRegistration> {
         var newResponse = json.decode(response.body);
 
         if (response.statusCode == 200) {
-          print('hallo-1');
+          debugPrint('hallo-1');
 
           if (newResponse['body-json']['statusCode'] == 200) {
-            print('hallo-2');
+            debugPrint('hallo-2');
 
             if(email == ''){
 
               showTopSnackBar(
                   Overlay.of(context),
-                  CustomSnackBar.info(
+                  const CustomSnackBar.info(
                     message: 'Registered successfully',
                     backgroundColor: Colors.green,
                     textStyle: TextStyle(
@@ -84,10 +83,10 @@ class _PilotRegistrationState extends State<PilotRegistration> {
                         color: Constant.textBtnColor,
                         fontWeight: FontWeight.w600),
                   ),
-                  displayDuration: Duration(seconds: 2)
+                  displayDuration: const Duration(seconds: 2)
               );
 
-              Get.offAll(PilotLogin());
+              Get.offAll(const PilotLogin());
 
             }else{
 
@@ -101,23 +100,23 @@ class _PilotRegistrationState extends State<PilotRegistration> {
                 CustomSnackBar.info(
                   message: newResponse['body-json']['body'],
                   backgroundColor: Colors.white,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 25,
                       color: Constant.textBtnColor,
                       fontWeight: FontWeight.w600),
                 ),
-                displayDuration: Duration(seconds: 3)
+                displayDuration: const Duration(seconds: 3)
             );
 
-            print(newResponse['body-json']['statusCode']);
-            print(newResponse['body-json']['body']);
+            debugPrint(newResponse['body-json']['statusCode']);
+            debugPrint(newResponse['body-json']['body']);
           }
         } else {
-          print('failed');
+          debugPrint('failed');
         }
       } catch (e) {
-        print(e.toString());
-        print('saddam');
+        debugPrint(e.toString());
+        debugPrint('saddam');
       }
 
     }
@@ -136,7 +135,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               ),
 
               /// Registration
-              Text(
+              const Text(
                 'Register As Pilot',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
               ),
@@ -151,11 +150,11 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
-                        Text('Nmae', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
+                        Text('Name', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
                         Text('*', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Constant.textBtnColor),),
                       ],
                     ),
@@ -172,8 +171,8 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
                         Text('DL Number', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
@@ -193,8 +192,8 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
                         Text('Mobile', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
@@ -215,8 +214,8 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
                         Text('Email', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
@@ -237,8 +236,8 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
                         Text('Password', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),),
@@ -268,16 +267,17 @@ class _PilotRegistrationState extends State<PilotRegistration> {
 
               /// Check Box and I Agree all Term & Condition
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: Constant.height * .05,
-                    width: Constant.width * .415,
+                    // width: Constant.width * .415,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Checkbox(
-                          value: this.value,
+                          value: value,
                           activeColor: Colors.green,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2),
@@ -288,7 +288,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
                             });
                           },
                         ),
-                        Text(
+                        const Text(
                           'Remember me',
                           style: TextStyle(
                               fontSize: 18,
@@ -323,7 +323,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Dont have an account?',
                     style: TextStyle(
                         fontSize: 18,
@@ -331,7 +331,7 @@ class _PilotRegistrationState extends State<PilotRegistration> {
                         color: Constant.textColor),
                   ),
                   UiHelper.customTextButton(() {
-                    Get.to(PilotLogin());
+                    Get.to(const PilotLogin());
                   }, 'Login now'),
                 ],
               )

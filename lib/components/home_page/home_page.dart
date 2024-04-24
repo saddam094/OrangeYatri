@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
                 children: [
                   /// Hallo Sharma ji and Welcome to E-Yatri
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Hello Sharma ji', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Constant.textColor),),
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       height: Constant.height * .39,
                       width: Constant.width * 1,
                       padding: EdgeInsets.only(top: Constant.height * .25),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(60),
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       ),
                       child: TextButton(
-                        child: Text('Track My Vehicle', style: TextStyle(fontSize: 20, color: Colors.white),),
+                        child: const Text('Track My Vehicle', style: TextStyle(fontSize: 20, color: Colors.white),),
                         onPressed: () {
 
                         },
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: Constant.height * .25,
                       width: Constant.width * 1,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(60)),
                       ),
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 /// Vehicle Number , Name and Date
-                                Column(
+                                const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('TATA [ JH 02 AM 2548 ]', style: TextStyle(color: Constant.textColor, fontSize: 15),),
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                                     onPressed: () {
 
                                     },
-                                    child: Text('On The Way', style: TextStyle(color: Colors.white),),
+                                    child: const Text('On The Way', style: TextStyle(color: Colors.white),),
 
                                   ),
                                 )
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                             ),
 
                             /// Single Line Baar
-                            Container(
+                            SizedBox(
                               height: Constant.height * .05,
                               width: Constant.width * 1,
                               // color: Constant.textBtnColor,
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
 
 
                             /// Pickup Adress Delivery address
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 /// Pickup Address

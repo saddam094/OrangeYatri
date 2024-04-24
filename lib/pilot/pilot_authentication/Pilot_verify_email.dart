@@ -24,7 +24,7 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
     var userData = {'email': email, 'otp': int.parse(otp)};
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -35,17 +35,17 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
       var newResponse = json.decode(response.body);
 
       if (response.statusCode == 200) {
-        print('hallo-1');
+        debugPrint('hallo-1');
 
         if (newResponse['body-json']['statusCode'] == 200) {
-          print('hallo-2');
+          debugPrint('hallo-2');
           // setState(() {
           //   err = '';
           // });
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'Registered successfully',
                 backgroundColor: Colors.green,
                 textStyle: TextStyle(
@@ -53,30 +53,30 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2));
+              displayDuration: const Duration(seconds: 2));
 
-          Get.offAll(PilotLogin());
+          Get.offAll(const PilotLogin());
         } else if (newResponse['body-json']['statusCode'] == 400) {
           showTopSnackBar(
               Overlay.of(context),
               CustomSnackBar.info(
                 message: newResponse['body-json']['body'],
                 backgroundColor: Colors.green,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontSize: 25,
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2));
+              displayDuration: const Duration(seconds: 2));
 
-          print(newResponse['body-json']['statusCode']);
-          print(newResponse['body-json']['body']);
+          debugPrint(newResponse['body-json']['statusCode']);
+          debugPrint(newResponse['body-json']['body']);
         }
       } else {
-        print('failed');
+        debugPrint('failed');
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -92,13 +92,13 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
               ),
 
               /// Verify Email Address
-              Text(
+              const Text(
                 'Verify Email Address',
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
               ),
 
               /// Waiting for OTP
-              Text(
+              const Text(
                 'Waiting for OTP',
                 style: TextStyle(
                     fontSize: 25,
@@ -118,15 +118,15 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
               Column(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('A 4 digit code has been to your registered', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
+                  const Text('A 4 digit code has been to your registered', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(' Email ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
-                      Text(widget.email, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black45),),
+                      const Text(' Email ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
+                      Text(widget.email, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black45),),
                     ],
                   ),
-                  Text('for verification purpose', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
+                  const Text('for verification purpose', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Constant.textColor),),
                 ],
               ),
 
@@ -152,7 +152,7 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
               //   height: Constant.height * .26,
               // ),
 
-              Container(
+              SizedBox(
                 height: Constant.height * .26,
                 width: Constant.width * 1,
                 //child: Center(child: Text(err, style:  TextStyle(fontSize: 18, color: Colors.red),)),
@@ -168,7 +168,7 @@ class _PilotVerifyEmailState extends State<PilotVerifyEmail> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Did not recieve code ? ',
                     style: TextStyle(
                         fontSize: 18,

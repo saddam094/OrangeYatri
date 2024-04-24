@@ -21,7 +21,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
     var userData = {"tripId": widget.tripId};
 
     final jsonData = json.encode(userData);
-    var response;
+    http.Response response;
 
     try {
       response = await http.post(
@@ -33,13 +33,13 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
 
       if (newResponse['body-json']['statusCode'] == 200) {
         data = newResponse['body-json']['body'];
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
       } else if (newResponse['body-json']['statusCode'] == 400) {
-        print(newResponse['body-json']['body']);
+        debugPrint(newResponse['body-json']['body']);
       }
     } catch (e) {
-      print('saddam ye Exception hai');
-      print(e.toString());
+      debugPrint('saddam ye Exception hai');
+      debugPrint(e.toString());
     }
 
     return {
@@ -57,7 +57,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
         future: historyTripData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -70,7 +70,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                     width: Constant.width * 1,
                     padding: EdgeInsets.only(
                         left: Constant.width * .05, right: Constant.width * .05),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(15),
@@ -82,18 +82,14 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                         Column(
                           children: [
                             Text(
-                              data['name'] == null
-                                  ? 'null'
-                                  : data['name'],
+                              data['name'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .07,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white),
                             ),
                             Text(
-                              data['dlNumber'] == null
-                                  ? 'null'
-                                  : data['dlNumber'],
+                              data['dlNumber'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .05,
                                   fontWeight: FontWeight.w400,
@@ -136,7 +132,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                   Container(
                     height: Constant.height * .39,
                     width: Constant.width * .95,
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     margin: EdgeInsets.only(top: Constant.height * .015),
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -182,16 +178,12 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  data['vehicleName'] == null
-                                      ? 'null'
-                                      : data['vehicleName'],
+                                  data['vehicleName'] ?? 'null',
                                   style: TextStyle(
                                       fontSize: Constant.width * .05, fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  data['vehicleNumber'] == null
-                                      ? 'null'
-                                      : data['vehicleNumber'],
+                                  data['vehicleNumber'] ?? 'null',
                                   style: TextStyle(
                                       fontSize: Constant.width * .05,
                                       fontWeight: FontWeight.w400,
@@ -231,7 +223,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                   color: Constant.color1),
                             ),
                             Text(
-                              data['date'] == null ? 'null' : data['date'],
+                              data['date'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .05,
                                   fontWeight: FontWeight.w400,
@@ -251,7 +243,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                   color: Constant.color1),
                             ),
                             Text(
-                              data['time'] == null ? 'null' : data['time'],
+                              data['time'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .05,
                                   fontWeight: FontWeight.w400,
@@ -271,9 +263,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                   color: Constant.color1),
                             ),
                             Text(
-                              data['goodsDetails'] == null
-                                  ? 'null'
-                                  : data['goodsDetails'],
+                              data['goodsDetails'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .05,
                                   fontWeight: FontWeight.w400,
@@ -293,9 +283,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                   color: Constant.color1),
                             ),
                             Text(
-                              data['goodsWeight'] == null
-                                  ? 'null'
-                                  : data['goodsWeight'],
+                              data['goodsWeight'] ?? 'null',
                               style: TextStyle(
                                   fontSize: Constant.width * .05,
                                   fontWeight: FontWeight.w400,
@@ -309,7 +297,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             /// Pickup Address
-                            Container(
+                            SizedBox(
                               height: Constant.height * .09,
                               width: Constant.width * .44,
                               // color: Colors.red,
@@ -325,9 +313,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                   ),
                                   Container(
                                     child: Text(
-                                      data['pickUpAddress'] == null
-                                          ? 'null'
-                                          : data['pickUpAddress'],
+                                      data['pickUpAddress'] ?? 'null',
                                       style: TextStyle(
                                           fontSize: Constant.width * .04,
                                           fontWeight: FontWeight.w400,
@@ -340,7 +326,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                             ),
 
                             /// Delivery Address
-                            Container(
+                            SizedBox(
                               height: Constant.height * .09,
                               width: Constant.width * .44,
                               // color: Colors.yellowAccent,
@@ -356,9 +342,7 @@ class _PilotHistoryViewParticularState extends State<PilotHistoryViewParticular>
                                         color: Colors.black87),
                                   ),
                                   Text(
-                                    data['deliveryAddress'] == null
-                                        ? 'null'
-                                        : data['deliveryAddress'],
+                                    data['deliveryAddress'] ?? 'null',
                                     style: TextStyle(
                                         fontSize: Constant.width * .04,
                                         fontWeight: FontWeight.w400,

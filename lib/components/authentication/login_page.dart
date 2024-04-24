@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: Constant.height * .15,
               ),
               /// Text "Login"
-              Text(
+              const Text(
                 'Login',
                 style: TextStyle(
                     fontSize: 30,
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               /// Text "Welcome Back To Account"
-              Text(
+              const Text(
                 'Welcome Back To Account',
                 style: TextStyle(
                     fontSize: 20,
@@ -56,8 +56,8 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
-                 Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                 const Padding(
+                   padding: EdgeInsets.only(left: 10),
                    child: Text('EMAIL ADDRESS', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                  ),
                  SizedBox(width: Constant.width *.001,)
@@ -71,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Text('PASSWORD', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                   ),
                   SizedBox(width: Constant.width *.001,)
@@ -90,13 +90,13 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  SizedBox(
                     height: Constant.height * .05,
                     width: Constant.width * .45,
                     child: Row(
                       children: [
                         Checkbox(
-                          value: this.value,
+                          value: value,
                           activeColor: Colors.green,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2),
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                         ),
-                        Text('Remember me', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
+                        const Text('Remember me', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                       ],
                     ),
                   ),
@@ -129,9 +129,9 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Dont have an account?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
+                  const Text('Dont have an account?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Constant.textColor),),
                   UiHelper.customTextButton(() {
-                    Get.to(RegisterPage());
+                    Get.to(const RegisterPage());
                   }, 'Register now'),
                 ],
               )

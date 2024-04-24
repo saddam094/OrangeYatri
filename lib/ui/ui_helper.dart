@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
 import 'package:pinput/pinput.dart';
 
@@ -14,11 +13,11 @@ class UiHelper {
         obscureText: toHide,
         decoration: InputDecoration(
             hintText: text,
-            hintStyle: TextStyle(color: Constant.textColor),
+            hintStyle: const TextStyle(color: Constant.textColor),
             // labelText: text,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Constant.textColor,
                     width: 1,
                     style: BorderStyle.solid))),
@@ -41,19 +40,19 @@ class UiHelper {
         maxLines: 1,
         autocorrect: true,
         autofocus: true,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         maxLength: characterCount,
         decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Constant.textBtnColor)),
             hintText: text,
-            hintStyle: TextStyle(color: Constant.textColor, fontSize: 20),
+            hintStyle: const TextStyle(color: Constant.textColor, fontSize: 20),
             suffixIcon: Icon(iconData),
             suffixIconColor: Colors.black,
             // labelText: text,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Constant.textColor,
                     width: 1,
                     style: BorderStyle.solid))),
@@ -72,18 +71,18 @@ class UiHelper {
         maxLines: 1,
         autocorrect: true,
         autofocus: true,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Constant.textBtnColor)),
             hintText: text,
-            hintStyle: TextStyle(color: Constant.textColor, fontSize: 20),
+            hintStyle: const TextStyle(color: Constant.textColor, fontSize: 20),
             suffixIcon: Icon(iconData),
             suffixIconColor: Colors.black,
             // labelText: text,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Constant.textColor,
                     width: 1,
                     style: BorderStyle.solid))),
@@ -102,18 +101,18 @@ class UiHelper {
         maxLines: 1,
         autocorrect: true,
         autofocus: true,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Constant.textBtnColor)),
             hintText: text,
-            hintStyle: TextStyle(color: Constant.textColor, fontSize: 20),
+            hintStyle: const TextStyle(color: Constant.textColor, fontSize: 20),
             // suffixIcon: Icon(iconData),
             // suffixIconColor: Colors.black,
             labelText: text,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Constant.textColor,
                     width: 1,
                     style: BorderStyle.solid))),
@@ -133,11 +132,11 @@ class UiHelper {
       child: TextField(
         controller: controller,
         obscureText: toHide,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         decoration: InputDecoration(
             hintText: text,
-            hintStyle: TextStyle(color: Constant.textColor),
-            focusedBorder: OutlineInputBorder(
+            hintStyle: const TextStyle(color: Constant.textColor),
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Constant.textBtnColor)),
             suffixIcon: IconButton(
               onPressed: () {
@@ -149,7 +148,7 @@ class UiHelper {
             // labelText: text,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Constant.textColor,
                     width: 1,
                     style: BorderStyle.solid))),
@@ -164,7 +163,7 @@ class UiHelper {
         voidCallback();
       },
       child: Text(text,
-          style: TextStyle(fontSize: 16, color: Constant.textBtnColor)),
+          style: const TextStyle(fontSize: 16, color: Constant.textBtnColor)),
     );
   }
 
@@ -175,7 +174,7 @@ class UiHelper {
       child: Container(
         height: Constant.height * .07,
         width: Constant.width * .99,
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         child: ElevatedButton(
             onPressed: () {
               voidCallback();
@@ -201,7 +200,7 @@ class UiHelper {
           color: Constant.textBtnColor,
           borderRadius: BorderRadius.circular(10)
         ),
-        child: Center(
+        child: const Center(
           child: CircularProgressIndicator(),
         ),
       ),
@@ -231,7 +230,7 @@ class UiHelper {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Ok')),
+                  child: const Text('Ok')),
             ],
           );
         });
@@ -246,7 +245,7 @@ class UiHelper {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black,
               blurRadius: 5,
@@ -262,7 +261,7 @@ class UiHelper {
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           )
         ],
       ),
@@ -279,7 +278,7 @@ class UiHelper {
         width: Constant.width * .44,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 bottomLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -289,7 +288,7 @@ class UiHelper {
                   color: Colors.grey.shade500,
                   blurRadius: 2,
                   spreadRadius: 1,
-                  offset: Offset(2.0, 2.0))
+                  offset: const Offset(2.0, 2.0))
             ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -314,7 +313,7 @@ class UiHelper {
     return Container(
       height: Constant.height * .05,
       width: Constant.width * .23,
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: ElevatedButton(
           onPressed: () {
             voidCallback();

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:orange_yatri/constant/constant_color.dart';
 import 'package:orange_yatri/pilot/pilot_home/pilot_home_page.dart';
-import 'package:orange_yatri/pilot/pilot_profile/pilot_profile_screen.dart';
 import 'package:orange_yatri/ui/ui_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -33,7 +32,7 @@ class _PilotUpdateProfileState extends State<PilotUpdateProfile> {
 
     var jsonData = json.encode(userData);
 
-    var response;
+    http.Response response;
 
     try{
 
@@ -51,7 +50,7 @@ class _PilotUpdateProfileState extends State<PilotUpdateProfile> {
 
           showTopSnackBar(
               Overlay.of(context),
-              CustomSnackBar.info(
+              const CustomSnackBar.info(
                 message: 'Profile Updated Successfully',
                 backgroundColor: Colors.green,
                 textStyle: TextStyle(
@@ -59,10 +58,10 @@ class _PilotUpdateProfileState extends State<PilotUpdateProfile> {
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2)
+              displayDuration: const Duration(seconds: 2)
           );
 
-          Get.offAll(PilotHomePage());
+          Get.offAll(const PilotHomePage());
 
         }else if(newResponse['body-json']['statusCode'] == 400){
 
@@ -71,26 +70,26 @@ class _PilotUpdateProfileState extends State<PilotUpdateProfile> {
               CustomSnackBar.info(
                 message: newResponse['body-json']['body'],
                 backgroundColor: Colors.white,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontSize: 25,
                     color: Constant.textBtnColor,
                     fontWeight: FontWeight.w600),
               ),
-              displayDuration: Duration(seconds: 2)
+              displayDuration: const Duration(seconds: 2)
           );
 
         }
 
       }else{
 
-        print('Failed');
+        debugPrint('Failed');
 
       }
 
     }catch(e){
 
-      print(e.toString());
-      print('saddam bhai ye Exception hai');
+      debugPrint(e.toString());
+      debugPrint('saddam bhai ye Exception hai');
 
     }
 
