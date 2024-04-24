@@ -1,0 +1,95 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:orange_yatri/constant/constant_color.dart';
+import 'package:orange_yatri/pilot/pilot_authentication/pilot_login.dart';
+import 'package:orange_yatri/pilot/pilot_home/pilot_home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  State<SplashScreen> createState() => SplashScreenState();
+}
+
+class SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+
+  static const String KEYLOGINPERSIST = 'isLogedIn';
+
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1), // Animation duration
+    );
+
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+
+    // Timer(Duration(seconds: 1), () {
+    //   _controller.forward();
+    // });
+
+    // Timer(Duration(seconds: 3), () {
+    //   // Get.offAll(() => PilotLogin());
+    //   WhereToGo();
+    // });
+
+    WhereToGo();
+
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    // _animation.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: Constant.width * 1, // Using Get.width instead of double.infinity
+        height: Constant.height * 1, // Using Get.height instead of double.infinity
+        decoration: BoxDecoration(
+          color: Constant.textBtnColor
+        ),
+        child: Center(
+          child: FadeTransition(
+            opacity: _animation,
+            child: Text(
+              'ORANGE-YATRI',
+              style: TextStyle(
+                fontSize: Constant.width * .1,
+                color: Colors.white, // Changed text color to white
+                fontWeight: FontWeight.w900
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void WhereToGo() async{
+    print('hallo from whereToGo');
+    var pref = await SharedPreferences.getInstance();
+    var isLoggedIn = pref.getBool(KEYLOGINPERSIST ??false);
+    print(isLoggedIn);
+    if(isLoggedIn != null){
+
+      if(isLoggedIn){
+        Get.offAll(PilotHomePage());
+      }
+    }else{
+      Get.offAll(PilotLogin());
+    }
+
+  }
+
+}
