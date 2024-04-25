@@ -13,9 +13,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => SplashScreenState();
 }
 
-class SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   static const String KEYLOGINPERSIST = 'isLogedIn';
 
   late AnimationController _controller;
@@ -42,7 +40,6 @@ class SplashScreenState extends State<SplashScreen>
     });
 
     // whereToGo();
-
   }
 
   @override
@@ -58,19 +55,16 @@ class SplashScreenState extends State<SplashScreen>
       body: Container(
         width: Constant.width * 1, // Using Get.width instead of double.infinity
         height: Constant.height * 1, // Using Get.height instead of double.infinity
-        decoration: const BoxDecoration(
-          color: Constant.textBtnColor
-        ),
+        decoration: const BoxDecoration(color: Constant.textBtnColor),
         child: Center(
           child: FadeTransition(
             opacity: _animation,
             child: Text(
               'ORANGE-YATRI',
               style: TextStyle(
-                fontSize: Constant.width * .1,
-                color: Colors.white, // Changed text color to white
-                fontWeight: FontWeight.w900
-              ),
+                  fontSize: Constant.width * .1,
+                  color: Colors.white, // Changed text color to white
+                  fontWeight: FontWeight.w900),
             ),
           ),
         ),
@@ -78,17 +72,15 @@ class SplashScreenState extends State<SplashScreen>
     );
   }
 
-  void whereToGo() async{
+  void whereToGo() async {
     var pref = await SharedPreferences.getInstance();
     var isLoggedIn = pref.getBool(KEYLOGINPERSIST);
-    if(isLoggedIn != null){
- if(isLoggedIn){
-        Get.offAll(const PilotHomePage());
+    if (isLoggedIn != null) {
+      if (isLoggedIn) {
+        Get.offAll(() => const PilotHomePage());
       }
-    }else{
-      Get.offAll(const PilotLogin());
+    } else {
+      Get.offAll(() => const PilotLogin());
     }
-
   }
-
 }

@@ -40,11 +40,8 @@ class _PilotHomePageState extends State<PilotHomePage> {
       response = await http.post(
           Uri.parse(
               'https://000quaslq5.execute-api.ap-south-1.amazonaws.com/orange_yatri/orangeYatri_particular_pilot_all_data'),
-          headers: <String, String> {
-            'Authorization': token
-          },
-          body: jsonData
-      );
+          headers: <String, String>{'Authorization': token},
+          body: jsonData);
 
       var newresponse = json.decode(response.body);
 
@@ -62,7 +59,6 @@ class _PilotHomePageState extends State<PilotHomePage> {
         // debugPrint('hallo-3');
 
         //debugPrint(newresponse['body-json']['statusCode']);
-
       } else {
         debugPrint('Failed');
       }
@@ -77,8 +73,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
     // };
   }
 
-  void tripNavigate() async{
-
+  void tripNavigate() async {
     var userData = {"dlNumber": dlNumber};
 
     final jsonData = json.encode(userData);
@@ -94,33 +89,19 @@ class _PilotHomePageState extends State<PilotHomePage> {
       var newResponse = json.decode(response.body);
 
       if (newResponse['body-json']['statusCode'] == 200) {
-
-          if(newResponse['body-json']['body']['status']){
-
-            Get.to(const PilotSelectVehicle());
-
-          }else{
-
-            Get.to(PilotEndYourRide(tripId: newResponse['body-json']['body']['data']['tripId']));
-
-          }
-
+        if (newResponse['body-json']['body']['status']) {
+          Get.to(() => const PilotSelectVehicle());
+        } else {
+          Get.to(() => PilotEndYourRide(tripId: newResponse['body-json']['body']['data']['tripId']));
+        }
       } else if (newResponse['body-json']['statusCode'] == 400) {
-
-
-
       } else {
-
         debugPrint('Failed');
-
       }
     } catch (e) {
-
       debugPrint(e.toString());
       debugPrint('saddam ye exception hai');
-
     }
-
   }
 
   @override
@@ -143,10 +124,10 @@ class _PilotHomePageState extends State<PilotHomePage> {
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(
                       // color: Constant.textBtnColor,
-                      gradient: LinearGradient(colors: [
-                        Constant.textBtnColor,
-                        Colors.deepOrangeAccent
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                      gradient: LinearGradient(
+                          colors: [Constant.textBtnColor, Colors.deepOrangeAccent],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(50),
                         bottomRight: Radius.circular(50),
@@ -162,19 +143,15 @@ class _PilotHomePageState extends State<PilotHomePage> {
                           Text(
                             'Hello, ${data['name'] ?? 'null'}',
                             style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                                fontFamily: 'FontMain'
-                            ),
+                                fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white, fontFamily: 'FontMain'),
                           ),
                           Text(
                             'Welcome to Orange-Yatri',
                             style: TextStyle(
-                                fontSize: Constant.width * .06,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontFamily: 'FontMain',
+                              fontSize: Constant.width * .06,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontFamily: 'FontMain',
                             ),
                           ),
                         ],
@@ -184,7 +161,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                       GestureDetector(
                         onTap: () {
                           /// Send to profile page
-                          Get.to(const PilotProfileScreen());
+                          Get.to(() => const PilotProfileScreen());
                         },
                         child: Container(
                           height: Constant.height * .08,
@@ -199,10 +176,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
                               border: Border.all(
                                 color: Colors.grey.shade500,
                                 width: Constant.width * .005,
-                              )
-                          ),
+                              )),
                           child: Center(
-                            child: Icon(Icons.person, size: Constant.height * .06,color: Colors.grey.shade800,),
+                            child: Icon(
+                              Icons.person,
+                              size: Constant.height * .06,
+                              color: Colors.grey.shade800,
+                            ),
                           ),
                         ),
                       )
@@ -214,9 +194,7 @@ class _PilotHomePageState extends State<PilotHomePage> {
                   height: Constant.height * .85,
                   width: Constant.width * 1,
                   margin: EdgeInsets.only(
-                      top: Constant.height * .17,
-                      left: Constant.width * .04,
-                      right: Constant.width * .04),
+                      top: Constant.height * .17, left: Constant.width * .04, right: Constant.width * .04),
                   child: Column(
                     children: [
                       Container(
@@ -235,7 +213,6 @@ class _PilotHomePageState extends State<PilotHomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-
                             /// Image Container
                             Container(
                               height: Constant.height * .15,
@@ -252,10 +229,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                   border: Border.all(
                                     color: Colors.grey.shade500,
                                     width: Constant.width * .005,
-                                  )
-                              ),
+                                  )),
                               child: Center(
-                                child: Icon(Icons.person, size: Constant.height * .14,color: Colors.grey.shade800,),
+                                child: Icon(
+                                  Icons.person,
+                                  size: Constant.height * .14,
+                                  color: Colors.grey.shade800,
+                                ),
                               ),
                             ),
                             Container(
@@ -271,17 +251,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                     children: [
                                       const Text(
                                         'Name : ',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.w600),
+                                        style:
+                                            TextStyle(fontSize: 15, color: Colors.black87, fontWeight: FontWeight.w600),
                                       ),
                                       Text(
                                         data['name'] ?? 'null',
                                         style: const TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: 15, color: Colors.grey, fontWeight: FontWeight.w400),
                                       ),
                                     ],
                                   ),
@@ -291,17 +267,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                     children: [
                                       const Text(
                                         'Mob : ',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.w600),
+                                        style:
+                                            TextStyle(fontSize: 15, color: Colors.black87, fontWeight: FontWeight.w600),
                                       ),
                                       Text(
                                         data['phone'] ?? 'null',
                                         style: const TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: 15, color: Colors.grey, fontWeight: FontWeight.w400),
                                       ),
                                     ],
                                   ),
@@ -311,17 +283,13 @@ class _PilotHomePageState extends State<PilotHomePage> {
                                     children: [
                                       const Text(
                                         'DL : ',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.w600),
+                                        style:
+                                            TextStyle(fontSize: 15, color: Colors.black87, fontWeight: FontWeight.w600),
                                       ),
                                       Text(
                                         data['dlNumber'] ?? 'null',
                                         style: const TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: 15, color: Colors.grey, fontWeight: FontWeight.w400),
                                       ),
                                     ],
                                   ),
@@ -341,34 +309,28 @@ class _PilotHomePageState extends State<PilotHomePage> {
                       Row(
                         children: [
                           UiHelper.customFullWidthHomeCard(() {
-
-                            Get.to(const PilotAllVehicle());
-
+                            Get.to(() => const PilotAllVehicle());
                           }, 'Add Vehicle', Icons.drive_eta),
-
                           SizedBox(width: Constant.width * .04),
-
                           UiHelper.customFullWidthHomeCard(() {
-
-                              tripNavigate();
-
+                            tripNavigate();
                           }, 'Add Trips', Icons.location_on_outlined),
                         ],
                       ),
 
-                      SizedBox(height: Constant.height * .02,),
+                      SizedBox(
+                        height: Constant.height * .02,
+                      ),
 
                       Row(
                         children: [
                           UiHelper.customFullWidthHomeCard(() {
-
-                            Get.to(const PilotHistoryList());
-
+                            Get.to(() => const PilotHistoryList());
                           }, 'History', Icons.history_edu_outlined),
-
                           SizedBox(width: Constant.width * .04),
-
-                          SizedBox(width: Constant.width * .4,)
+                          SizedBox(
+                            width: Constant.width * .4,
+                          )
                         ],
                       )
                     ],
